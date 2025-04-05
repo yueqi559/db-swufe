@@ -20,19 +20,27 @@
 
 答：
 （1）
+
 SELECT name
 FROM instructor
 WHERE name LIKE 'S%';
+
 ![image](https://github.com/user-attachments/assets/a487fc48-8a0c-4f3a-aff2-defaa45a8403)
+
 （2）
+
 SELECT name
 FROM instructor
 WHERE name SIMILAR TO 'S%';
+
 ![image](https://github.com/user-attachments/assets/ee6bc712-ba45-47ed-b5a9-987414473cec)
+
 （3）
+
 SELECT name
 FROM instructor
 WHERE name ~ '^S';
+
 ![image](https://github.com/user-attachments/assets/8f239796-8550-4b0e-9d4b-6d214da30bf8)
 
 ## 题目三（3分）
@@ -45,7 +53,9 @@ WHERE name ~ '^S';
 - 显示某张表的关系模式
 
   答：
+
 （1）
+
 SELECT name FROM instructor WHERE name LIKE 'S%';
 
 SELECT name FROM instructor WHERE name SIMILAR TO 'S%';
@@ -53,6 +63,7 @@ SELECT name FROM instructor WHERE name SIMILAR TO 'S%';
 SELECT name FROM instructor WHERE name ~ '^S';
 
 （2）
+
 psql -U postgres -h localhost -p 5432
 
 \l
