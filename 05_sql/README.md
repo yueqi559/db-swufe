@@ -79,21 +79,28 @@ WHERE rnk = 1;
 2. 找到工资最高员工的名字，假设工资最高的员工有多位（试试多种写法）。
 （1）使用子查询
 SELECT name
+
 FROM employee
+
 WHERE salary = (SELECT MAX(salary) FROM employee);
 
 （2）使用窗口函数
 SELECT name
+
 FROM (
     SELECT name, salary, DENSE_RANK() OVER (ORDER BY salary DESC) as drnk
     FROM employee
 ) t
+
 WHERE drnk = 1;
 
 （3）使用JOIN
 SELECT e.name
+
 FROM employee e
+
 JOIN (SELECT MAX(salary) as max_salary FROM employee) m
+
 ON e.salary = m.max_salary;
 
 
