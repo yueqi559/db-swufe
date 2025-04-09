@@ -51,58 +51,56 @@ HAVING AVG(salary) > 20000;
 1. 找到工资最高员工的名字，假设工资最高的员工只有一位（至少两种写法）。
 
 （1）使用子查询
-
+```sql
 SELECT name
 FROM employee
 WHERE salary = (SELECT MAX(salary) FROM employee);
-
+```
 
 （2）使用ORDER BY和LIMIT
-
+```sql
 SELECT name
 FROM employee
 ORDER BY salary DESC
 LIMIT 1;
-
+```
 
 （3）使用窗口函数
-
+```sql
 SELECT name
 FROM (
     SELECT name, salary, RANK() OVER (ORDER BY salary DESC) as rnk
     FROM employee
 ) t
 WHERE rnk = 1;
-
+```
 
 
 2. 找到工资最高员工的名字，假设工资最高的员工有多位（试试多种写法）。
 （1）使用子查询
+```sql
 SELECT name
-
 FROM employee
-
 WHERE salary = (SELECT MAX(salary) FROM employee);
+```
 
 （2）使用窗口函数
+```sql
 SELECT name
-
 FROM (
     SELECT name, salary, DENSE_RANK() OVER (ORDER BY salary DESC) as drnk
     FROM employee
 ) t
-
 WHERE drnk = 1;
+```
 
 （3）使用JOIN
+```sql
 SELECT e.name
-
 FROM employee e
-
 JOIN (SELECT MAX(salary) as max_salary FROM employee) m
-
 ON e.salary = m.max_salary;
-
+```
 
 3. 解释下面四句。
 
